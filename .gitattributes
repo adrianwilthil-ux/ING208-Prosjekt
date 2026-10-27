@@ -1,0 +1,6 @@
+*.m     text diff=matlab
+*.slx   binary
+*.mdl   binary
+*.mat   binary
+*.fig   binary
+*.mlx   binary
