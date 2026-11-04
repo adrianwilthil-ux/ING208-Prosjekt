@@ -2,11 +2,11 @@
 load robot_model_data.mat
 
 % Symbolic angles and test angles
-syms theta_b theta_s theta_e theta_w1 theta_w2;
-thetas = [theta_b theta_s theta_e theta_w1 theta_w2];
-q1 = [0, 0, 0, 0, 0];
-q2 = [0.1, 0.2, 0.3, 0.4, 0.5];
-q3 = [0.2, 0.1, 0.4, 0.1, 0.2];
+syms qb qs qe qw1 qw2;
+thetas = [qb qs qe qw1 qw2];
+Q1 = [0, 0, 0, 0, 0];
+Q2 = [0.1, 0.2, 0.3, 0.4, 0.5];
+Q3 = [0.2, 0.1, 0.4, 0.1, 0.2];
 
 
 %% Manual forward kinematics
@@ -20,11 +20,11 @@ A = [cos(theta), -sin(theta)*cos(alpha),  sin(theta)*sin(alpha), a*cos(theta);
 end
 
 % Joint frames per DH row + tool transformation
-Tb = dh(theta_b, lb, 0, -sym(pi)/2);
-Ts = dh(theta_s, 0, L, 0);
-Te = dh(theta_e, 0, 0, -sym(pi)/2);
-Tw1 = dh(theta_w1, L, 0, sym(pi)/2);
-Tw2 = dh(theta_w2, 0, 0, -sym(pi)/2);
+Tb = dh(qb, lb, 0, -sym(pi)/2);
+Ts = dh(qs, 0, L, 0);
+Te = dh(qe, 0, 0, -sym(pi)/2);
+Tw1 = dh(qw1, L, 0, sym(pi)/2);
+Tw2 = dh(qw2, 0, 0, -sym(pi)/2);
 Tt = [1 0 0 0;
       0 1 0 0;
       0 0 1 tl;
@@ -46,14 +46,14 @@ robot_sym.fkine(thetas)
 
 
 % Numerical equivalanve (GIVEN ANGLES)
-disp('--- TEST q1 ---');
-manual = double(subs(T, thetas, q1))
-corke = robot.fkine(q1)
+disp('--- TEST Q1 ---');
+manual = double(subs(T, thetas, Q1))
+corke = robot.fkine(Q1)
 
-disp('--- TEST q2 ---');
-manual = double(subs(T, thetas, q2))
-corke = robot.fkine(q2)
+disp('--- TEST Q2 ---');
+manual = double(subs(T, thetas, Q2))
+corke = robot.fkine(Q2)
 
-disp('--- TEST q3 ---');
-manual = double(subs(T, thetas, q3))
-corke = robot.fkine(q3)
+disp('--- TEST Q3 ---');
+manual = double(subs(T, thetas, Q3))
+corke = robot.fkine(Q3)

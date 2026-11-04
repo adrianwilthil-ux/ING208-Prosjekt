@@ -4,10 +4,14 @@ L = 0.6;
 tl = 0.35;
 T_tool = transl(0, 0, tl);
 
+%Starting offsets (0 for those not here)
+
+
+
 % Robot object using DH params
 Links(1) = Link('d', lb, 'a', 0,  'alpha',  -pi/2);
 Links(2) = Link('d', 0,  'a', L, 'alpha',  0);
-Links(3) = Link('d', 0,  'a', 0, 'alpha',  -pi/2);
+Links(3) = Link('d', 0,  'a', 0, 'alpha',  -pi/2, 'offset', -pi);
 Links(4) = Link('d', L,  'a', 0,  'alpha',  pi/2);
 Links(5) = Link('d', 0,  'a', 0,  'alpha',  -pi/2);
 T_tool = transl(0, 0, tl);
@@ -24,4 +28,7 @@ T_tool = transl(0, 0, tl);
 
 robot_sym = SerialLink(Links_sym, 'name', 'myRobot', 'tool', T_tool);
 
-save('robot_model.mat', 'lb', 'L', 'tl', 'robot', 'robot_sym');
+qz = [0, 0, 0, 0, 0];
+robot.teach(qz)
+
+save('robot_model_data.mat', 'lb', 'L', 'tl', 'robot', 'robot_sym');
