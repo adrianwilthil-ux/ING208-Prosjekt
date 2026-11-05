@@ -3,7 +3,7 @@ lb = 0.15;
 L = 0.6;
 tl = 0.35;
 T_tool = transl(0, 0, tl);
-
+qz = [0, 0, 0, 0, 0];
 %Starting offsets (0 for those not here)
 
 
@@ -27,8 +27,5 @@ Links_sym(5) = Link('d', 0,  'a', 0,  'alpha',  sym(-pi/2));
 T_tool = transl(0, 0, tl);
 
 robot_sym = SerialLink(Links_sym, 'name', 'myRobot', 'tool', T_tool);
-
-qz = [0, 0, 0, 0, 0];
-robot.teach(qz)
 
 save('robot_model_data.mat', 'lb', 'L', 'tl', 'robot', 'robot_sym');
