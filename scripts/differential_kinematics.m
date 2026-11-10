@@ -1,4 +1,6 @@
-load robot_model_data.mat
+addpath(fullfile(fileparts(mfilename('fullpath')), 'configs_helpers'));
+config;
+robot_model;
 
 syms q1 q2 q3 q4 q5;
 q = [q1, q2, q3, q4, q5];

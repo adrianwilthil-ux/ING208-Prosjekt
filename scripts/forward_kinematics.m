@@ -1,5 +1,6 @@
 % Importing robot model
-load robot_model_data.mat
+addpath(fullfile(fileparts(mfilename('fullpath')), 'configs_helpers'));
+robot_model;
 
 % Symbolic angles and test angles
 syms qb qs qe qw1 qw2;
