@@ -13,7 +13,7 @@ function plot_disc(points, ceiling, mag, phi)
     hold on;                                        % keep the robot in the figure
     fill3(edge(1,:), edge(2,:), edge(3,:), [0.8 0.8 0.8], 'FaceAlpha', 0.4); % filled disc
    
-    for i = 1:size(points, 1)
+    for i = 1:length(points)
         T = ceiling_to_base(points(i, 1), points(i, 2), ceiling, 0, mag, phi);
         plot3(T(1,4), T(2,4), T(3,4), 'bo', 'MarkerFaceColor', 'b'); % start tip position
     end

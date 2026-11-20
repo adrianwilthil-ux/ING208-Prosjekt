@@ -2,9 +2,9 @@ addpath(fullfile(fileparts(mfilename('fullpath')), 'configs_helpers'));
 config;
 robot_model;
 
-res_h = 10; %resolution height
-res_p = 10; %resolution points
-res_t = 3; %resolution tilt
+res_h = 1; %resolution height
+res_p = 1; %resolution points
+res_t = 1; %resolution tilt
 
 start_offset = -DRILL_STROKE * 100 / res_h; %cm / res
 end_offset = CLEARANCE * 100 / res_h; %cm / res
