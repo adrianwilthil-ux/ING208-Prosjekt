@@ -16,6 +16,7 @@ radius_scaled = DISC_RADIUS * 100 / res_p;
 
 reachable = 0;
 unreachable = 0;
+peak_qd = zeros(5,1);
 
 
 for h = start_offset:end_offset    %every height
@@ -37,6 +38,10 @@ for h = start_offset:end_offset    %every height
                     disp(["X:", x_real, "Y:", y_real, "Offset:", height_real, "Tilt:", mag_real]);
                 else
                     reachable = reachable + 1;
+                    J = robot.jacobe(q);
+                    Jtask = J(1:5, :);                 % Keep drill direction fixed; tool roll is free
+                    qd = Jtask \ [0; 0; 0.10; 0; 0];   % Required joint speeds [rad/s]
+                    peak_qd = max(peak_qd, abs(qd));
                     %disp(["X:", x_real, "Y:", y_real, "Offset:", height_real, "Tilt:", mag_real]);
                 end
             end
@@ -52,3 +57,5 @@ disp("Unreachable poses:");
 disp(unreachable);
 disp("Percentage of poses reachable:");
 disp([num2str(percentage), '%']);
+disp("Peak joint speed:");
+disp(peak_qd);

@@ -1,13 +1,11 @@
 %Workspace
 CEILING = 1.15; %m
 CLEARANCE = 0.2; %m
-APPROACH_DIST = 0.05; %m
 DISC_RADIUS = 0.5; %m
 
 %Drilling params
 DRILL_STROKE = 0.2; %m
 DRILL_SPEED_UP = 0.01; %m/s
-DRILL_SPEED_DOWN = 0.1; %m/s
 
 %DH values
 BASE_HEIGHT = 0.15; %m
@@ -27,7 +25,7 @@ COMS = [0,            LENGTHS(1)/2, 0;
         0,           -LENGTHS(4)/2, 0;           ];
 
 DRILL_CASING_MASS = 3;
-DRILL_BIT_MASS = 0.4;
+DRILL_BIT_MASS = 0.13;
 DRILL_COM = [0, 0, 0.225*DRILL_BIT_MASS/(DRILL_BIT_MASS + DRILL_CASING_MASS)];
 
 DRILL_FORCE = 50; %N
