@@ -1,4 +1,4 @@
-%% PLOT DISC
+%% PLOT DISC - Plots disc and points
 
 function plot_disc(points, ceiling, mag, phi)
 

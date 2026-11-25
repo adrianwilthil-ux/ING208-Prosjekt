@@ -1,5 +1,16 @@
+%% Config - main config file
+
+%DH values
+BASE_HEIGHT = 0.15; %m
+LINK_LENGTH = 0.6; %m
+
+CASING_LENGTH = 0.2; %m
+BIT_LENGTH = 0.25; %m
+TOOL_LENGTH = CASING_LENGTH / 2 + BIT_LENGTH; %m
+
 %Workspace
-CEILING = 1.15; %m
+d = 1; %m
+CEILING = d + BASE_HEIGHT; %m
 CLEARANCE = 0.2; %m
 DISC_RADIUS = 0.5; %m
 
@@ -7,13 +18,11 @@ DISC_RADIUS = 0.5; %m
 DRILL_STROKE = 0.2; %m
 DRILL_SPEED_UP = 0.01; %m/s
 
-%DH values
-BASE_HEIGHT = 0.15; %m
-LINK_LENGTH = 0.6; %m
+%Trajectory times
+BETWEEN_HOLES_TIME = 4; %s
+APPROACH_TIME = 3; %s
+RETRACT_TIME = 4; %s
 
-CASING_LENGTH = 0.2;
-BIT_LENGTH = 0.25;
-TOOL_LENGTH = CASING_LENGTH / 2 + BIT_LENGTH; %m
 
 %Dynamics values
 DENSITY = 2700; %kg/m^3 (aluminium)
@@ -28,4 +37,5 @@ DRILL_CASING_MASS = 3;
 DRILL_BIT_MASS = 0.13;
 DRILL_COM = [0, 0, 0.225*DRILL_BIT_MASS/(DRILL_BIT_MASS + DRILL_CASING_MASS)];
 
-DRILL_FORCE = 50; %N
+DRILL_FORCE = 120; %N
+DRILL_MOMENT = 1; %Nm

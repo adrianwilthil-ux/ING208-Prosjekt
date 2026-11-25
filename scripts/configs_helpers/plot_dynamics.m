@@ -1,3 +1,5 @@
+%% Plot dynamics - plots joint position, velocity, acceleration and torque
+
 function plot_dynamics(torque, dt, q, qd, qdd)
 
 n = length(torque);
@@ -8,7 +10,7 @@ figure;
 subplot(3,1,1)
 plot(t, q)
 ylabel('Position (rad)')
-legend('Shoulder', 'Elbow')
+legend('Base', 'Shoulder', 'Elbow', 'W1', 'W2')
 grid on
 
 subplot(3,1,2)

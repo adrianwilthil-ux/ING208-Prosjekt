@@ -1,3 +1,5 @@
+%% Link length calculator - calculates elbow joint based on link lengths
+
 d = 1; %arm base to roof along robot z-axis
 tl = 0.15; %tool length (fully drilled)
 ll = 0.6; %shoulder and elbow link length
