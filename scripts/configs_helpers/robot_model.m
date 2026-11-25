@@ -56,5 +56,14 @@ robot.gravity = [0, 0, 9.81];
 qz = [0, 0, 0, 0, 0];
 
 
+% Robot object for symbolic matrix
+Links_sym(1) = Link('d', lb, 'a', 0,  'alpha',  sym(-pi/2));
+Links_sym(2) = Link('d', 0,  'a', L, 'alpha',  0);
+Links_sym(3) = Link('d', 0,  'a', 0, 'alpha',  sym(-pi/2));
+Links_sym(4) = Link('d', L,  'a', 0,  'alpha',  sym(pi/2));
+Links_sym(5) = Link('d', 0,  'a', 0,  'alpha',  sym(-pi/2));
+T_tool = transl(0, 0, tl);
+
+robot_sym = SerialLink(Links_sym, 'name', 'myRobot', 'tool', T_tool);
 
 
