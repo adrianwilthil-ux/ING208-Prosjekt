@@ -1,3 +1,5 @@
+%% Forward kinematics - manual base-tool transformation and verification
+
 % Importing robot model
 addpath(fullfile(fileparts(mfilename('fullpath')), 'configs_helpers'));
 robot_model;
