@@ -1,4 +1,5 @@
-%% IK5 - Custom inverse kinematic solver (claude assisted)
+%% IK5 - Custom inverse kinematic solver 
+% -- AI Written function -- (Details in App. C)
 
 function q = ik5(robot, p, d, qprev)
 % Closed-form IK: tip position p (1x3) and tool z axis d (1x3), both in base frame.
@@ -13,7 +14,6 @@ w  = p - tl*d - [0;0;lb]; % Wrist point relative to the shoulder
 wrap = @(a) atan2(sin(a), cos(a)); % Wrap angles into (-pi, pi]
 best = inf;  q = []; %Initializing values
 
-%% -- AI Written function -- (Details in App. C)
 for flip = 0:1 % Base branch: facing the point, or reaching over
 
     if hypot(w(1), w(2)) < 1e-9, q1 = qprev(1) + flip*pi; % On the axis: keep the previous base angle

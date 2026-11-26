@@ -3,14 +3,14 @@
 function plot_disc(points, ceiling, mag, phi)
 
     clf;
-    disc_r = 0.5;                                   % disc radius (m)
-    a = linspace(0, 2*pi, 60);                      % angles around the edge
-    edge = zeros(3, numel(a));                      % edge points in the base frame
+    disc_r = 0.5; % disc radius (m)
+    a = linspace(0, 2*pi, 60); % angles around the edge
+    edge = zeros(3, numel(a)); % edge points in the base frame
     for i = 1:numel(a)
         Tp = ceiling_to_base(disc_r*cos(a(i)), disc_r*sin(a(i)), ceiling, 0, mag, phi); % clearance 0 = the ceiling surface itself
-        edge(:, i) = Tp(1:3, 4);                    % keep only the position
+        edge(:, i) = Tp(1:3, 4); % Keep only the position
     end
-    hold on;                                        % keep the robot in the figure
+    hold on; % keep the robot in the figure
     fill3(edge(1,:), edge(2,:), edge(3,:), [0.8 0.8 0.8], 'FaceAlpha', 0.4); % filled disc
    
     for i = 1:length(points)
