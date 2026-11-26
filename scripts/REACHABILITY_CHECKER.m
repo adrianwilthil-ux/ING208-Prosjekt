@@ -6,7 +6,7 @@ config;
 robot_model;
 
 %Resolution
-res_h = 4; %Resolution height [cm]
+res_h = 2; %Resolution height [cm]
 res_p = 2; %Resolution points [cm]
 res_t = 3; %Resolution tilt [deg]
 
@@ -27,8 +27,6 @@ unreachable = 0;
 
 peak_qd = zeros(5,1); 
 peak_q = nan(5,5); 
-peak_trq = zeros(5,1);
-peak_trq_q = nan(5,5); 
 
 failed_speed = 0; 
 v = [0; 0; 0.10; 0; 0]; %Target speed
@@ -36,20 +34,22 @@ qprev = qz;
 
 %Main test loop
 for h = start_offset:end_offset    %Every height
-    height_real = h * res_h / 100;
+    height_real = h * res_h / 100; %Height in m
     for m = start_mag:end_mag      %Every tilt angle
-        mag_real = m * res_t;
+        mag_real = m * res_t; % Magnitude in degrees
         
         for x = -radius_scaled:radius_scaled   %Every x-step in disc
-            x_real = x * res_p / 100;
+            x_real = x * res_p / 100; %etc 
             y_steps = floor(sqrt(radius_scaled^2 - (x)^2));
             
             for y = -y_steps:y_steps           %Every y-step in disc
-                y_real = y * res_p / 100;         
+                y_real = y * res_p / 100;    
                 Tp = ceiling_to_base(x_real, y_real, CEILING, height_real, mag_real, 0); %Transform point to robot frame
                 q = ik5(robot, Tp(1:3, 4), Tp(1:3, 3), qprev); %Inverse kinematics, get joint angles
                 qprev = q; %Seed for next iteration
                 
+                checked_points(end+1, :) = Tp(1:3, 4).';
+
                 if isempty(q) %If pose unreachable, count
                     unreachable = unreachable + 1;
                     %disp(["X:", x_real, "Y:", y_real, "Offset:", height_real, "Tilt:", mag_real]); %For troubleshooting
