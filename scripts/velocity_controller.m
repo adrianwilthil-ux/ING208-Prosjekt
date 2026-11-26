@@ -8,7 +8,7 @@ Ki = 1; %Integral gain
 Cv = pid(Kp, Ki);
 tf_vel_controller = feedback(Cv*tf_joint, 1);
 
-%Plot step response
+%Plot step response (Written by AI)
 figure;
 step(tf_vel_controller);
 grid on;

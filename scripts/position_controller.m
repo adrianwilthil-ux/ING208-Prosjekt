@@ -15,7 +15,7 @@ q_end = 1;
 tf_pos = tf_vel_controller/s; %Integrating velocity TF to get position
 tf_pos_controller = feedback(Cp*tf_pos, 1); %Closed loop
 
-%Plotting
+%Plotting (Written by AI)
 figure;
 step((q_end-q_start)*tf_pos_controller);
 grid on;
