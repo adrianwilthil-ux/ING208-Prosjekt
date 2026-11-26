@@ -21,7 +21,6 @@ P_b = [R, p_b;   % Pose in base frame
 
 q = ik5(robot, p_b, R(:, 3), qz); % Inverse kinematics
 
-plot_disc([p0, p0], CEILING, tilt_mag, tilt_phi);
 robot.plot(q)
 
 

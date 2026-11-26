@@ -4,6 +4,9 @@
 addpath(fullfile(fileparts(mfilename('fullpath')), 'configs_helpers'));
 robot_model;
 
+% Omitting robot offset
+robot.offset = qz;
+
 % Symbolic angles and test angles
 syms qb qs qe qw1 qw2;
 thetas = [qb qs qe qw1 qw2];
@@ -60,3 +63,6 @@ corke = robot.fkine(Q2)
 disp('--- TEST Q3 ---');
 manual = double(subs(T, thetas, Q3))
 corke = robot.fkine(Q3)
+
+% Resetting robot offset
+robot.offset = O;

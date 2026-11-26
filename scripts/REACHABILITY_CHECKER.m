@@ -6,9 +6,9 @@ config;
 robot_model;
 
 %Resolution
-res_h = 2; %Resolution height [cm]
-res_p = 2; %Resolution points [cm]
-res_t = 3; %Resolution tilt [deg]
+res_h = 1; %Resolution height [cm]
+res_p = 1; %Resolution points [cm]
+res_t = 1; %Resolution tilt [deg]
 
 %Start and end height offsets
 start_offset = -DRILL_STROKE * 100 / res_h; %cm / res
@@ -30,7 +30,6 @@ peak_q = nan(5,5);
 
 failed_speed = 0; 
 v = [0; 0; 0.10; 0; 0]; %Target speed
-qprev = qz;
 
 %Main test loop
 for h = start_offset:end_offset    %Every height
@@ -45,10 +44,8 @@ for h = start_offset:end_offset    %Every height
             for y = -y_steps:y_steps           %Every y-step in disc
                 y_real = y * res_p / 100;    
                 Tp = ceiling_to_base(x_real, y_real, CEILING, height_real, mag_real, 0); %Transform point to robot frame
-                q = ik5(robot, Tp(1:3, 4), Tp(1:3, 3), qprev); %Inverse kinematics, get joint angles
-                qprev = q; %Seed for next iteration
+                q = ik5(robot, Tp(1:3, 4), Tp(1:3, 3), qz); %Inverse kinematics, get joint angles
                 
-                checked_points(end+1, :) = Tp(1:3, 4).';
 
                 if isempty(q) %If pose unreachable, count
                     unreachable = unreachable + 1;

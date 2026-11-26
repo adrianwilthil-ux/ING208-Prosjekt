@@ -19,9 +19,9 @@ DRILL_STROKE = 0.2; %m
 DRILL_SPEED_UP = 0.01; %m/s
 
 %Trajectory times
-BETWEEN_HOLES_TIME = 4; %s
-APPROACH_TIME = 3; %s
-RETRACT_TIME = 4; %s
+BETWEEN_HOLES_TIME = 5; %s
+APPROACH_TIME = 4; %s
+RETRACT_TIME = 5; %s
 
 
 %Dynamics values
