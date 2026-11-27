@@ -10,7 +10,7 @@ function plot_disc(points, ceiling, mag, phi)
         Tp = ceiling_to_base(disc_r*cos(a(i)), disc_r*sin(a(i)), ceiling, 0, mag, phi); % clearance 0 = the ceiling surface itself
         edge(:, i) = Tp(1:3, 4); % Keep only the position
     end
-    hold on; % keep the robot in the figure
+    hold on; % Keep the robot in the figure
     fill3(edge(1,:), edge(2,:), edge(3,:), [0.8 0.8 0.8], 'FaceAlpha', 0.4); % filled disc
    
     for i = 1:length(points)

@@ -74,8 +74,7 @@ for h = start_offset:end_offset    %Every height
                         end
                     else
                         failed_speed = failed_speed + 1; %Failed speed count +1
-                    end
-                    
+                    end          
                 end
             end
         end
